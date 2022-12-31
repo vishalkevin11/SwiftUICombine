@@ -64,3 +64,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 SwiftUICombine.xcodeproj/project.xcworkspace/xcuserdata/kevin.saldanha.xcuserdatad/UserInterfaceState.xcuserstate
 SwiftUICombine.xcodeproj/project.xcworkspace/xcuserdata/kevin.saldanha.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
