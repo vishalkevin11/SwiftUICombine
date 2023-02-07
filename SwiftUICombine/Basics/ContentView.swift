@@ -14,6 +14,8 @@ import Combine
 // show check mark / cross symbol
 
 
+// A passthrough subject lets you send value on demand
+// use send() to send values
 
 class LoginViewModel: ObservableObject {
     @Published var nameText: String = ""
@@ -56,24 +58,32 @@ class LoginViewModel: ObservableObject {
     }
 }
 
+@available(iOS 15.0, *)
 struct ContentView: View {
     
     @StateObject var loginViewModel = LoginViewModel()
     
+    @available(iOS 15.0, *)
     var body: some View {
         VStack {
-            TextField("Enter name", text: $loginViewModel.nameText)
-                .overlay(alignment: .trailing, content: {
-                    ZStack {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.red)
-                            .opacity((loginViewModel.count == 0) ? 0.0 : (self.loginViewModel.isValid) ? 0.0 : 1.0)
-                        Image(systemName: "checkmark")
-                            .foregroundColor(.green)
-                            .opacity((loginViewModel.count == 0) ? 0.0 : (self.loginViewModel.isValid) ? 1.0 : 0.0)
-                    }
+            if #available(iOS 15.0, *) {
+                TextField("Enter name", text: $loginViewModel.nameText)
+                    .overlay(alignment: .trailing, content: {
+                        ZStack {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.red)
+                                .opacity((loginViewModel.count == 0) ? 0.0 : (self.loginViewModel.isValid) ? 0.0 : 1.0)
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.green)
+                                .opacity((loginViewModel.count == 0) ? 0.0 : (self.loginViewModel.isValid) ? 1.0 : 0.0)
+                        }
+                        
+                    })
+            } else {
+                // Fallback on earlier versions
+                TextField("Enter name", text: $loginViewModel.nameText)
                     
-                })
+            }
             Text("\(loginViewModel.count)")
             Button("Submit") {
                 
@@ -85,6 +95,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    @available(iOS 15.0, *)
     static var previews: some View {
         ContentView()
     }
