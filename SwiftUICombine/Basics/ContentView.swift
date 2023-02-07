@@ -14,6 +14,8 @@ import Combine
 // show check mark / cross symbol
 
 
+// A passthrough subject lets you send value on demand
+// use send() to send values
 
 class LoginViewModel: ObservableObject {
     @Published var nameText: String = ""

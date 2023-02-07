@@ -12,8 +12,10 @@ struct SwiftUICombineApp: App {
     var body: some Scene {
         WindowGroup {
            // ContentView()
-            MealsContentView()
+          //  MealsContentView()
             // UsersListView()
+          //  BasicOperatorsView()
+            PostsView()
         }
     }
 }
