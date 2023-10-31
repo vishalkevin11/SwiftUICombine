@@ -14,6 +14,7 @@ struct UsersListView: View {
     var body: some View {
         List(userViewModel.users) { user in
             VStack {
+                Text("\(user.id.description)")
                 Text("\(user.name)")
                 Text("\(user.email)")
             }
